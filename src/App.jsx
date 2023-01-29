@@ -5,11 +5,10 @@ import Figure from "./components/Figure";
 const NASA_URL = "https://api.nasa.gov/";
 const NASA_API_KEY = "nlEtySupmu0WGD2PwyBpxYXcrngbiSNhfmaFjVs2";
 const NASA_MARS_URL =
-  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000";
+  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-10-31";
 
 function App() {
-  const today = new Date(Date.now()).toISOString().slice(0, 10);
-  const [time, setTime] = useState(today);
+  const today = new Date(Date.now()).toISOString().slice(0, 10); // const [time, setTime] = useState(today);
 
   const [date, setDate] = useState("");
 
@@ -26,19 +25,20 @@ function App() {
       const response = await fetch(
         `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
       );
+
       const data = await response.json();
       setApod(data);
     };
     getApod();
   }, [date]);
 
-  console.log(apod); //Este console.log es para ver la data que recibimos.
+  // console.log(apod); //Este console.log es para ver la data que recibimos.
 
   useEffect(() => {
     const getMarsData = async () => {
-      const response = await fetch(`${NASA_MARS_URL}&api_key=${NASA_API_KEY}`);
-      const data = await response.json();
-      setMarsData(data);
+      const response = await fetch(`${NASA_MARS_URL}api_key=${NASA_API_KEY}`);
+      const mData = await response.json();
+      setMarsData(mData);
     };
     getMarsData();
   }, [date]);
@@ -58,7 +58,8 @@ function App() {
           Jun 16, 1995 and today
         </p>
       ) : ( */}
-      <Figure data={apod} martianData={marsData} />
+      {/* <Figure data={apod} /> */}
+      <Figure martianData={mdata} />
     </div>
   );
 }
