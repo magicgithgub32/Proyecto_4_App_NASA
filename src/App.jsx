@@ -5,7 +5,7 @@ import Figure from "./components/Figure";
 const NASA_URL = "https://api.nasa.gov/";
 const NASA_API_KEY = "nlEtySupmu0WGD2PwyBpxYXcrngbiSNhfmaFjVs2";
 const NASA_MARS_URL =
-  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-10-31";
+  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000";
 
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10); // const [time, setTime] = useState(today);
@@ -14,7 +14,7 @@ function App() {
 
   const [apod, setApod] = useState("");
 
-  const [marsData, setMarsData] = useState("");
+  const [marsData, setMarsData] = useState([]);
 
   const handleInput = (ev) => {
     setDate(ev.target.value.toLocaleString());
@@ -32,18 +32,22 @@ function App() {
     getApod();
   }, [date]);
 
-  // console.log(apod); //Este console.log es para ver la data que recibimos.
+  console.log(apod); //Este console.log es para ver la data que recibimos.
 
   useEffect(() => {
     const getMarsData = async () => {
-      const response = await fetch(`${NASA_MARS_URL}api_key=${NASA_API_KEY}`);
+      const response = await fetch(`${NASA_MARS_URL}&api_key=${NASA_API_KEY}`);
       const mData = await response.json();
       setMarsData(mData);
     };
     getMarsData();
-  }, [date]);
+  }, []);
 
-  console.log(marsData);
+  console.log(marsData); //Este console.log es para ver la data que recibimos.
+
+  // const marsImage = marsData.photos.map((photo) => photo.img_src);
+
+  // console.log(marsImage[0]);
 
   return (
     <div>
@@ -57,9 +61,14 @@ function App() {
           Not picture generated fof that date yet. Please, choose a date between
           Jun 16, 1995 and today
         </p>
-      ) : ( */}
-      {/* <Figure data={apod} /> */}
-      <Figure martianData={mdata} />
+      ) : ( * */}
+      <Figure data={apod} />
+      <select></select>
+      <div>
+        {marsData.photos.map((photo) => (
+          <img src={photo.img_src} key={photo.id} alt="Mars Photo" />
+        ))}
+      </div>
     </div>
   );
 }

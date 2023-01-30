@@ -18,32 +18,28 @@ export const CopyDate = styled.span`
   margin: 10px;
 `;
 
-const Figure = ({ martianData }) => {
-  // const Figure = ({ data }) => {
-  const marsImages = martianData.photos.map((photo) => photo.img_src);
-  console.log(marsImages);
+const Figure = ({ data }) => {
+  // const marsImage = martianData.photos.map((photo) => photo.img_src);
+  // return <img src={marsImage[0]} />;
 
-  return <h1>Hola</h1>;
+  return (
+    <figure>
+      <h2>{data.title}</h2>
+      <img src={data.url} alt={data.title} />
+      <DataBox>
+        {data.copyright ? (
+          <CopyDate>Copyright: {data.copyright}</CopyDate>
+        ) : (
+          <CopyDate>Copyright: Unknown</CopyDate>
+        )}
+
+        <CopyDate>{data.date}</CopyDate>
+      </DataBox>
+      <br />
+      <span>{data.explanation}</span>
+    </figure>
+  );
 };
-
-//   return (
-//     <figure>
-//       <h2>{data.title}</h2>
-//       <img src={data.url} alt={data.title} />
-//       <DataBox>
-//         {data.copyright ? (
-//           <CopyDate>Copyright: {data.copyright}</CopyDate>
-//         ) : (
-//           <CopyDate>Copyright: Unknown</CopyDate>
-//         )}
-
-//         <CopyDate>{data.date}</CopyDate>
-//       </DataBox>
-//       <br />
-//       <span>{data.explanation}</span>
-//     </figure>
-//   );
-// };
 export default Figure;
 
 // {
