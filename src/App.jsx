@@ -45,13 +45,13 @@ function App() {
   useEffect(() => {
     const getMarsData = async () => {
       const response = await fetch(
-        `${NASA_MARS_URL}earth_date=2015-5-3&api_key=${NASA_API_KEY}`
+        `${NASA_MARS_URL}earth_date=${date}&api_key=${NASA_API_KEY}`
       );
       const mData = await response.json();
       setMarsData(mData);
     };
     getMarsData();
-  }, []);
+  }, [date]);
 
   console.log(marsData); //Este console.log es para ver la data que recibimos.
 
@@ -61,18 +61,18 @@ function App() {
       <h1>Astronomic picture of the day</h1>
       <span>This picture is from the date: {date}</span>
       <br />
-      <span>APOD API</span>
+      {/* <span>APOD API</span> */}
       <br />
       <input type="date" min="1995-06-16" max={today} onChange={handleInput} />
       <br />
-      <span>MARS API</span>
-      <br />
-      <input
+      {/* <span>MARS API</span>
+      <br /> */}
+      {/* <input
         type="date"
-        min="1995-06-16"
+        min="2012-08-06"
         max={today}
         onChange={handleMarsInput}
-      />
+      /> */}
 
       {/* {date > today ? (
         <p>
