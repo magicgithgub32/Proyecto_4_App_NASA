@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div>
-      <img src="../public/favicon-192.png"></img>
+      <img src="../public/favicon-192.png" alt="NASA Logo"></img>
       <h1>Astronomic picture of the day</h1>
       <span>This picture is from the date: {date}</span>
       <br />
