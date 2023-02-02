@@ -29,28 +29,32 @@ function App() {
   };
 
   useEffect(() => {
-    const getApod = async () => {
-      const response = await fetch(
-        `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
-      );
+    if (date) {
+      const getApod = async () => {
+        const response = await fetch(
+          `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
+        );
 
-      const data = await response.json();
-      setApod(data);
-    };
-    getApod();
+        const data = await response.json();
+        setApod(data);
+      };
+      getApod();
+    }
   }, [date]);
 
   console.log(apod); //Este console.log es para ver la data que recibimos.
 
   useEffect(() => {
-    const getMarsData = async () => {
-      const response = await fetch(
-        `${NASA_MARS_URL}earth_date=${date}&api_key=${NASA_API_KEY}`
-      );
-      const mData = await response.json();
-      setMarsData(mData);
-    };
-    getMarsData();
+    if (date) {
+      const getMarsData = async () => {
+        const response = await fetch(
+          `${NASA_MARS_URL}earth_date=${date}&api_key=${NASA_API_KEY}`
+        );
+        const mData = await response.json();
+        setMarsData(mData);
+      };
+      getMarsData();
+    }
   }, [date]);
 
   console.log(marsData); //Este console.log es para ver la data que recibimos.
