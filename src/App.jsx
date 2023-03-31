@@ -61,7 +61,7 @@ function App() {
 
   return (
     <div>
-      <img src="../public/favicon-192.png" alt="NASA Logo"></img>
+      <img src="https://res.cloudinary.com/dxxkog06n/image/upload/v1680250621/favicon-192_nklbsc.png" alt="NASA Logo"></img>
       <h1>Astronomic picture of the day</h1>
       <span>This picture is from the date: {date}</span>
       <br />
