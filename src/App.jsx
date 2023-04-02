@@ -7,10 +7,9 @@ const NASA_API_KEY = "nlEtySupmu0WGD2PwyBpxYXcrngbiSNhfmaFjVs2";
 const NASA_MARS_URL =
   "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?";
 
+
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
-
-  const [marsDate, setMarsDate] = useState("");
 
   const [date, setDate] = useState("");
 
@@ -24,9 +23,6 @@ function App() {
     setDate(ev.target.value.toLocaleString());
   };
 
-  const handleMarsInput = (ev) => {
-    setMarsDate(ev.target.value.toLocaleString());
-  };
 
   useEffect(() => {
     if (date) {
@@ -42,8 +38,6 @@ function App() {
     }
   }, [date]);
 
-  console.log(apod); //Este console.log es para ver la data que recibimos.
-
   useEffect(() => {
     if (date) {
       const getMarsData = async () => {
@@ -55,9 +49,9 @@ function App() {
       };
       getMarsData();
     }
-  }, [date]);
 
-  console.log(marsData); //Este console.log es para ver la data que recibimos.
+     console.log(marsData);
+  }, [date]);
 
   return (
     <div>
@@ -65,25 +59,10 @@ function App() {
       <h1>Astronomic picture of the day</h1>
       <span>This picture is from the date: {date}</span>
       <br />
-      {/* <span>APOD API</span> */}
       <br />
       <input type="date" min="1995-06-16" max={today} onChange={handleInput} />
       <br />
-      {/* <span>MARS API</span>
-      <br /> */}
-      {/* <input
-        type="date"
-        min="2012-08-06"
-        max={today}
-        onChange={handleMarsInput}
-      /> */}
-
-      {/* {date > today ? (
-        <p>
-          Not picture generated for that date yet. Please, choose a date between
-          Jun 16, 1995 and today
-        </p>
-      ) : ( * */}
+      
       <br />
       <p>PLEASE, SELECT YOUR DESIRED API:</p>
       <select
@@ -103,11 +82,14 @@ function App() {
       ) : (
         <div>
           <h3>MARS' PICTURES FROM THE EARTH DATE SELECTED:</h3>
-          {marsData.photos ? (
+          {marsData.photos ? 
+          (
             marsData.photos.map((photo) => (
               <img src={photo.img_src} key={photo.id} alt="Mars Photo" />
             ))
-          ) : (
+          )
+           :
+           (
             <p>-- (No pictures from Mars were taken on that date) --</p>
           )}
         </div>
