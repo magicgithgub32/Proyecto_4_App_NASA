@@ -13,7 +13,7 @@ function App() {
 
   const [date, setDate] = useState("");
 
-  const [apod, setApod] = useState("");
+  const [apod, setApod] = useState([]);
 
   const [marsData, setMarsData] = useState([]);
 
@@ -81,12 +81,13 @@ function App() {
         <Figure data={apod} />
       ) : (
         <div>
-          <h3>MARS' PICTURES FROM THE EARTH DATE SELECTED:</h3>
+          <h3>MARS' PICTURE FROM THE EARTH DATE SELECTED:</h3>
           {marsData.photos ? 
-          (
-            marsData.photos.map((photo) => (
-              <img src={photo.img_src} key={photo.id} alt="Mars Photo" />
-            ))
+          ( 
+            <div>
+            <p>(CAMERA {marsData.photos[0].camera.name})</p>
+            <img src={marsData.photos[0].img_src} alt="Mars Photo" />
+            </div>
           )
            :
            (
