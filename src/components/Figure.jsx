@@ -11,7 +11,12 @@ export const DataBox = styled.div`
   border-color: grey;
   border-style: double;
   border-radius: 24px;
-  width: 30%;
+  width: 40%;
+  gap: 1rem;
+  margin-top: 25px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    }
 `;
 
 export const CopyDate = styled.span`
