@@ -10,7 +10,7 @@ const NASA_MARS_URL =
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
 
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(today);
 
   const [apod, setApod] = useState([]);
 
@@ -115,7 +115,9 @@ function App() {
           <h3>MARS' PICTURE FROM THE EARTH DATE SELECTED:</h3>
           {marsData.photos ? (
             <div>
-              <img src={marsData.photos[0].img_src} alt="Mars Photo" />
+              {marsData.photos[0] && (
+                <img src={marsData.photos[0].img_src} alt="Mars Photo" />
+              )}
             </div>
           ) : (
             <p>-- (No pictures from Mars were taken on that date) --</p>
