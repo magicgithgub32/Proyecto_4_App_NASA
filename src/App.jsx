@@ -43,34 +43,7 @@ function App() {
       };
       getMarsData();
     }
-  }, [date]);
-
-  // useEffect(() => {
-  //   if (date) {
-  //     const getApod = async () => {
-  //       const response = await fetch(
-  //         `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
-  //       );
-
-  //       const data = await response.json();
-  //       setApod(data);
-  //     };
-  //     getApod();
-  //   }
-  // }, [date]);
-
-  // useEffect(() => {
-  //   if (date) {
-  //     const getMarsData = async () => {
-  //       const response = await fetch(
-  //         `${NASA_MARS_URL}earth_date=${date}&api_key=${NASA_API_KEY}`
-  //       );
-  //       const mData = await response.json();
-  //       setMarsData(mData);
-  //     };
-  //     getMarsData();
-  //   }
-  // }, [date]);
+  }, [date, selectedApi]);
 
   return (
     <div>
@@ -82,22 +55,17 @@ function App() {
       <span>This picture is from the date: {date}</span>
       <br />
       <br />
-      <input type="date" min="1995-06-16" max={today} onChange={handleInput} />
+      <input
+        type="date"
+        value={date}
+        min="1995-06-16"
+        max={today}
+        onChange={handleInput}
+      />
       <br />
 
       <br />
       <p>PLEASE, SELECT YOUR DESIRED API:</p>
-      {/* <select
-        name="select-API"
-        onChange={(e) => setSelectedApi(e.target.value)}
-      >
-        <option value="APOD-API" selected={selectedApi === "APOD-API"}>
-          APOD API
-        </option>
-        <option value="MARS-API" selected={selectedApi === "MARS-API"}>
-          MARS API
-        </option>
-      </select> */}
 
       <select
         name="select-API"
@@ -115,8 +83,10 @@ function App() {
           <h3>MARS' PICTURE FROM THE EARTH DATE SELECTED:</h3>
           {marsData.photos ? (
             <div>
-              {marsData.photos[0] && (
+              {marsData.photos[0] ? (
                 <img src={marsData.photos[0].img_src} alt="Mars Photo" />
+              ) : (
+                <p>-- (No pictures from Mars were taken on that date) --</p>
               )}
             </div>
           ) : (
