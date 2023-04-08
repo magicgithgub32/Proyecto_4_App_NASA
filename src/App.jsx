@@ -26,7 +26,11 @@ function App() {
     if (date && selectedApi === "APOD-API") {
       const getApod = async () => {
         const response = await fetch(
-          `${NASA_URL}planetary/apod?date=${date}&api_key=${NASA_API_KEY}`
+          `${
+            import.meta.env.VITE_NASA_URL
+          }planetary/apod?date=${date}&api_key=${
+            import.meta.env.VITE_NASA_API_KEY
+          }`
         );
 
         const data = await response.json();
@@ -36,7 +40,9 @@ function App() {
     } else if (date && selectedApi === "MARS-API") {
       const getMarsData = async () => {
         const response = await fetch(
-          `${NASA_MARS_URL}earth_date=${date}&api_key=${NASA_API_KEY}`
+          `${import.meta.env.VITE_NASA_MARS_URL}earth_date=${date}&api_key=${
+            import.meta.env.VITE_NASA_API_KEY
+          }`
         );
         const mData = await response.json();
         setMarsData(mData);
