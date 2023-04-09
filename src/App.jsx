@@ -2,11 +2,6 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Figure from "./components/Figure";
 
-const NASA_URL = "https://api.nasa.gov/";
-const NASA_API_KEY = "nlEtySupmu0WGD2PwyBpxYXcrngbiSNhfmaFjVs2";
-const NASA_MARS_URL =
-  "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?";
-
 function App() {
   const today = new Date(Date.now()).toISOString().slice(0, 10);
 
